@@ -45,7 +45,7 @@ export default function QualitySection() {
               Pure By Design
             </h2>
 
-            <p className="font-epilogue text-lg text-[#333] leading-relaxed">
+            <p className="font-epilogue text-lg text-black mb-10 leading-relaxed">
               Meticulously formulated fragrances created with clarity,
               intention, and enduring performance.
             </p>

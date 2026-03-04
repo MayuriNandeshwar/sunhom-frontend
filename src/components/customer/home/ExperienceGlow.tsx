@@ -66,7 +66,7 @@ export default function ExperienceGlow() {
           </p>
 
           <Link
-            href="/products?featured=true"
+            href="/collections/candle"
             className="px-12 py-4 rounded-full bg-amber-600 text-white font-semibold 
                                 hover:bg-amber-700 hover:scale-105 shadow-xl hover:shadow-2xl 
                                 transition-all duration-300">

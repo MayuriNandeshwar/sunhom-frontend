@@ -57,26 +57,26 @@ export default function MeaningSection() {
             <div className="w-20 h-[2px] bg-[#1F4D3B]/30 mb-8" />
 
             <div className="space-y-6">
-              <p className="font-epilogue text-lg leading-relaxed text-[#333]">
+              <p className="font-epilogue text-lg text-black mb-10 leading-relaxed">
                 <b>SUNHOM</b> was founded on a simple belief — luxury should feel
                 natural, refined, and accessible. It should not belong to a
                 select few, but to everyone who values comfort and presence.
               </p>
 
-              <p className="font-epilogue text-lg leading-relaxed text-[#333]">
+              <p className="font-epilogue text-lg leading-relaxed text-black mb-10">
                 Inspired by the idea that everyday spaces deserve thoughtful
                 detail, the brand was created to offer premium ambience without
                 excess or extravagance.
               </p>
 
-              <p className="font-epilogue text-lg leading-relaxed text-[#333]">
+              <p className="font-epilogue text-lg leading-relaxed text-black mb-10">
                 From car diffusers and camphor sachets to soy wax candles,
                 each product is crafted with clean ingredients and a
                 commitment to quality — designed to bring quiet luxury
                 into daily life.
               </p>
 
-              <p className="font-epilogue text-lg leading-relaxed text-[#333]">
+              <p className="font-epilogue text-lg leading-relaxed text-black mb-10">
                 <b>SUNHOM</b> stands for confidence without noise —
                 luxury that feels personal, honest, and within reach.
               </p>

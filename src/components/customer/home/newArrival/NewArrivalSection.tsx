@@ -36,13 +36,11 @@ export default function NewArrivalSection() {
 
         {/* HEADER */}
         <div className="max-w-4xl mx-auto text-center mb-12">
-  
-
           <h2 className="font-playfair text-3xl md:text-4xl text-amber-700 mb-6">
             The Latest Expressions
           </h2>
 
-          <p className="font-epilogue text-lg text-[#333] leading-relaxed">
+          <p className="font-epilogue text-lg text-black mb-10 leading-relaxed">
             An evolving collection of scent and ambience — crafted
             to elevate modern spaces with understated luxury.
           </p>

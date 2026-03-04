@@ -147,9 +147,11 @@ export default function Navbar() {
                 >
 
                   {[
-                    { label: "Drive Collection", href: "/collections/drive" },
-                    { label: "Pure Air Rituals", href: "/collections/pure-air-rituals" },
-                    { label: "Signature Candle Collection", href: "/collections/signature-candles" },
+                    
+                    { label: "Signature Candles", href: "/collections/candle" },
+                    // { label: "Drive Collection", href: "/collections/drive" },
+                    // { label: "Pure Air Rituals", href: "/collections/ritual" },
+                    
                   ].map(({ label, href }) => (
                     <Link
                       key={label}

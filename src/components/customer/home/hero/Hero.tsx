@@ -137,7 +137,7 @@ export default function Hero() {
           </motion.p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="/products?featured=true">
+            <Link href="/collections/candle">
               <button className="px-12 py-4 rounded-full bg-amber-600 text-white font-semibold 
                                 hover:bg-amber-700 hover:scale-105 shadow-xl hover:shadow-2xl 
                                 transition-all duration-300">
@@ -145,7 +145,7 @@ export default function Hero() {
               </button>
             </Link>
 
-            <Link href="/products#scents">
+            <Link href="/collections/candle">
               <button className="px-12 py-4 rounded-full border-2 border-white text-white font-semibold 
                                 hover:bg-white hover:text-gray-900 hover:scale-105 
                                 backdrop-blur-sm bg-white/10 transition-all duration-300">

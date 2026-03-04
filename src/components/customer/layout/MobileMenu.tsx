@@ -71,7 +71,7 @@ export default function MobileMenu({
             `}
           >
             <div className="space-y-4 pl-4 text-[13px]">
-
+{/* 
               <Link
                 href="/collections/drive"
                 onClick={onClose}
@@ -81,19 +81,19 @@ export default function MobileMenu({
               </Link>
 
               <Link
-                href="/collections/pure-air-rituals"
+                href="/collections/ritual"
                 onClick={onClose}
                 className="block text-black hover:text-[var(--brand-gold)] transition"
               >
                 Pure Air Rituals
-              </Link>
+              </Link> */}
 
               <Link
-                href="/collections/signature-candles"
+                href="/collections/candle"
                 onClick={onClose}
                 className="block text-black hover:text-[var(--brand-gold)] transition"
               >
-                Signature Candle Collection
+                Signature Candles
               </Link>
 
             </div>
