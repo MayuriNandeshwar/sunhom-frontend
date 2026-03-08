@@ -4,7 +4,7 @@ export interface AdminVariantDto {
     fragrance?: string;
     weightGrams?: number;
     sizeLabel?: string;
-    burnTimeHours?: number;
+    durationHours?: number;
     price: number;
     mrp?: number;
     isActive: boolean;
