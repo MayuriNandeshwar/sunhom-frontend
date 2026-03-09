@@ -4,18 +4,18 @@ import api from '@/lib/axios';
  * Bestseller product type (matches backend DTO v1.1)
  */
 export interface BestsellerProduct {
-  productId: string;
-  productName: string;
-  slug: string;
-  shortDescription: string;   // ✅ Added
-  sku: string;
-  price: number;
-  mrp: number;
-  discountPercentage: number;
-  imageUrl: string;
-  inStock: boolean;
+  productId: string
+  productName: string
+  slug: string
+  shortDescription: string
+  sku: string
+  price: number
+  mrp: number
+  discountPercentage: number
+  imageUrl: string
+  hoverImageUrl?: string | null
+  inStock: boolean
 }
-
 /**
  * Bestseller API response
  */

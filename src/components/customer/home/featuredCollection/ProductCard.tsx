@@ -1,20 +1,45 @@
-'use client';
+'use client'
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { Heart } from 'lucide-react';
-import { useState } from 'react';
-import { BestsellerProduct } from '@/lib/api/home/bestseller/products.service';
+import Image from 'next/image'
+import Link from 'next/link'
+import { Heart } from 'lucide-react'
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { BestsellerProduct } from '@/lib/api/home/bestseller/products.service'
 
 export default function ProductCard({ product }: { product: BestsellerProduct }) {
-  const images = product.images ?? [product.imageUrl];
-  const primaryImage = images[0];
-  const hoverImage = images[1] ?? images[0];
 
-  const [liked, setLiked] = useState(false);
+  const router = useRouter()
+
+  const primaryImage = product.imageUrl
+  const hoverImage = product.hoverImageUrl || product.imageUrl
+
+  const [liked, setLiked] = useState(false)
+  const [mobilePreview, setMobilePreview] = useState(false)
+
+  const handleClick = (e: React.MouseEvent) => {
+
+    const isMobile = window.innerWidth < 768
+
+    if (isMobile) {
+      e.preventDefault()
+
+      if (!mobilePreview) {
+        setMobilePreview(true)
+        return
+      }
+
+      router.push(`/products/${product.slug}`)
+    }
+  }
 
   return (
-    <Link href={`/products/${product.slug}`} className="group block">
+    <Link
+      href={`/products/${product.slug}`}
+      onClick={handleClick}
+      className="group block"
+    >
+
       <div
         className="
           bg-white rounded-3xl overflow-hidden
@@ -23,10 +48,11 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
           flex flex-col h-full
         "
       >
+
         {/* IMAGE */}
         <div className="relative h-[380px] overflow-hidden bg-[#f5f3ef]">
 
-          {/* Primary image */}
+          {/* Primary */}
           <Image
             src={primaryImage}
             alt={product.productName}
@@ -38,20 +64,20 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
             "
           />
 
-          {/* Hover image */}
+          {/* Hover */}
           <Image
             src={hoverImage}
             alt={product.productName}
             fill
-            className="
+            className={`
               object-cover absolute inset-0
-              opacity-0
               transition-opacity duration-[900ms] ease-out
+              ${mobilePreview ? 'opacity-100' : 'opacity-0'}
               group-hover:opacity-100
-            "
+            `}
           />
 
-          {/* SAVE RIBBON – Luxury Version */}
+          {/* SAVE RIBBON */}
           {product.discountPercentage > 0 && (
             <div
               className="
@@ -73,8 +99,8 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
           {/* Wishlist */}
           <button
             onClick={(e) => {
-              e.preventDefault();
-              setLiked(prev => !prev);
+              e.preventDefault()
+              setLiked(prev => !prev)
             }}
             className="
               absolute top-5 right-5
@@ -85,7 +111,6 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
               transition-all duration-300
               hover:scale-105
             "
-            aria-label="Add to wishlist"
           >
             <Heart
               className={`
@@ -97,12 +122,12 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
               strokeWidth={1.6}
             />
           </button>
+
         </div>
 
         {/* CONTENT */}
         <div className="px-6 py-6 flex flex-col gap-3 min-h-[170px] text-left">
 
-          {/* PRODUCT NAME – Serif */}
           <h3
             className="
               font-playfair
@@ -117,18 +142,17 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
             {product.productName}
           </h3>
 
-          {/* SHORT DESCRIPTION */}
           {product.shortDescription && (
             <p className="text-sm text-amber-700 leading-relaxed line-clamp-2 min-h-[42px]">
               {product.shortDescription}
             </p>
           )}
 
-          {/* PRICE */}
           <div className="mt-auto flex items-center gap-4">
             <span className="text-lg font-medium text-[#1c1c1c]">
               ₹{product.price}
             </span>
+
             {product.mrp > product.price && (
               <span className="text-sm text-gray-400 line-through">
                 ₹{product.mrp}
@@ -137,7 +161,9 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
           </div>
 
         </div>
+
       </div>
+
     </Link>
-  );
+  )
 }

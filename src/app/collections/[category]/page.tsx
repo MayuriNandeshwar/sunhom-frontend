@@ -48,7 +48,7 @@ export default async function CollectionPage({
       <UtilityBar />
       <Navbar />
 
-      <div className="pt-[104px]">
+      <div className="pt-[140px]">
         <BreadcrumbBar category={resolvedParams.category} />
         <CategoryHero category={resolvedParams.category} />
 
