@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
+import { newsletterService } from "@/lib/api/newsletter/newsletter.service";
 
 import {
   Instagram,
@@ -24,6 +26,49 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  /* ================= NEWSLETTER STATE ================= */
+
+  const [email, setEmail] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [popup, setPopup] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSubscribe = async () => {
+
+    if (!email) {
+      setMessage("Please enter your email.");
+      setPopup(true);
+      return;
+    }
+
+    try {
+
+      setLoading(true);
+
+      const res = await newsletterService.subscribe({ email });
+
+      if (res.status === 200) {
+        setMessage("🎉 Welcome to SUNHOM! You are now subscribed.");
+        setEmail("");
+      }
+
+    } catch (err: any) {
+
+      if (err?.response?.status === 409) {
+        setMessage("✨ You are already subscribed to SUNHOM.");
+      } else {
+        setMessage("Something went wrong. Please try again.");
+      }
+
+    } finally {
+
+      setLoading(false);
+      setPopup(true);
+
+    }
+
+  };
+
   return (
     <>
 
@@ -31,7 +76,6 @@ export default function Footer() {
 
       <section className="bg-[#0B5C4E] py-12">
 
-        {/* title line */}
         <div className="flex items-center justify-center gap-4 text-white text-[11px] tracking-[0.25em] whitespace-nowrap mb-10 px-4">
 
           <span className="flex-1 h-[1px] bg-white/40"></span>
@@ -47,7 +91,6 @@ export default function Footer() {
 
         <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-10 text-center">
 
-          {/* Exclusive Offers */}
           <div className="flex flex-col items-center gap-4">
             <div className="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center">
               <BadgePercent className="w-7 h-7 text-white" />
@@ -63,7 +106,6 @@ export default function Footer() {
           </div>
 
 
-          {/* Free Shipping */}
           <div className="flex flex-col items-center gap-4">
             <div className="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center">
               <Truck className="w-7 h-7 text-white" />
@@ -79,7 +121,6 @@ export default function Footer() {
           </div>
 
 
-          {/* Personalized Gifting */}
           <div className="flex flex-col items-center gap-4">
             <div className="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center">
               <Gift className="w-7 h-7 text-white" />
@@ -95,7 +136,6 @@ export default function Footer() {
           </div>
 
 
-          {/* Luxury */}
           <div className="flex flex-col items-center gap-4">
             <div className="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center">
               <Sparkles className="w-7 h-7 text-white" />
@@ -123,7 +163,7 @@ export default function Footer() {
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 md:gap-x-20">
 
-            {/* COLUMN 1 : LOGO + NEWSLETTER */}
+            {/* COLUMN 1 */}
 
             <div>
 
@@ -150,11 +190,17 @@ export default function Footer() {
                 <input
                   type="email"
                   placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="flex-1 px-4 py-2 rounded-l bg-white/10 border border-white/30 text-white placeholder-white/60 outline-none"
                 />
 
-                <button className="bg-white text-[#014338] px-4 py-2 rounded-r font-medium hover:bg-white/90">
-                  Subscribe
+                <button
+                  onClick={handleSubscribe}
+                  disabled={loading}
+                  className="bg-white text-[#014338] px-4 py-2 rounded-r font-medium hover:bg-white/90"
+                >
+                  {loading ? "..." : "Subscribe"}
                 </button>
 
               </div>
@@ -162,12 +208,9 @@ export default function Footer() {
             </div>
 
 
-            {/* COLUMN 2 + 3 WRAPPER (Mobile 2 columns) */}
+            {/* COLUMN 2 + 3 */}
 
             <div className="grid grid-cols-2 md:contents gap-10">
-
-
-              {/* ABOUT SUNHOM */}
 
               <div>
 
@@ -177,48 +220,17 @@ export default function Footer() {
 
                 <ul className="space-y-2 text-sm">
 
-                  <li>
-                    <Link onClick={scrollTop} href="/" className="text-white/80 hover:text-white">
-                      Home
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link href="/collections/candle" className="text-white/80 hover:text-white">
-                      Candle
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link href="/collections/diffuser" className="text-white/80 hover:text-white">
-                      Diffuser
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link href="/collections/sachet" className="text-white/80 hover:text-white">
-                      Sachet
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link href="/about-us" className="text-white/80 hover:text-white">
-                      About Us
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link href="/contact-us" className="text-white/80 hover:text-white">
-                      Contact
-                    </Link>
-                  </li>
+                  <li><Link onClick={scrollTop} href="/" className="text-white/80 hover:text-white">Home</Link></li>
+                  <li><Link href="/collections/candle" className="text-white/80 hover:text-white">Candle</Link></li>
+                  <li><Link href="/collections/diffuser" className="text-white/80 hover:text-white">Diffuser</Link></li>
+                  <li><Link href="/collections/sachet" className="text-white/80 hover:text-white">Sachet</Link></li>
+                  <li><Link href="/about-us" className="text-white/80 hover:text-white">About Us</Link></li>
+                  <li><Link href="/contact-us" className="text-white/80 hover:text-white">Contact</Link></li>
 
                 </ul>
 
               </div>
 
-
-              {/* CUSTOMER SERVICE */}
 
               <div>
 
@@ -228,29 +240,10 @@ export default function Footer() {
 
                 <ul className="space-y-2 text-sm">
 
-                  <li>
-                    <Link href="/faq" className="text-white/80 hover:text-white">
-                      FAQs
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link href="/privacy-policy" className="text-white/80 hover:text-white">
-                      Privacy Policy
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link href="/terms-and-conditions" className="text-white/80 hover:text-white">
-                      Terms & Conditions
-                    </Link>
-                  </li>
-
-                  <li>
-                    <Link href="/refund-policy" className="text-white/80 hover:text-white">
-                      Return & Refund Policy
-                    </Link>
-                  </li>
+                  <li><Link href="/faq" className="text-white/80 hover:text-white">FAQs</Link></li>
+                  <li><Link href="/privacy-policy" className="text-white/80 hover:text-white">Privacy Policy</Link></li>
+                  <li><Link href="/terms-and-conditions" className="text-white/80 hover:text-white">Terms & Conditions</Link></li>
+                  <li><Link href="/refund-policy" className="text-white/80 hover:text-white">Return & Refund Policy</Link></li>
 
                 </ul>
 
@@ -281,9 +274,6 @@ export default function Footer() {
 
               </div>
 
-
-              {/* SOCIAL */}
-
               <div className="flex gap-4 mt-5">
 
                 <a className="text-white hover:text-[#EAC27A]" href="#"><Instagram size={20} /></a>
@@ -302,13 +292,47 @@ export default function Footer() {
         </div>
 
 
-        {/* ================= COPYRIGHT ================= */}
+        {/* COPYRIGHT */}
 
         <div className="border-t border-white/20 mt-10 pt-5 text-center text-sm text-white/80">
           © {new Date().getFullYear()} SUNHOM. All rights reserved.
         </div>
 
       </footer>
+
+
+      {/* ================= POPUP ================= */}
+
+      {popup && (
+
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
+
+          <div className="bg-white rounded-xl p-6 w-[320px] text-center">
+
+            <Image
+              src="/logo/sunhomtrans.png"
+              alt="SUNHOM"
+              width={200}
+              height={90}
+              className="mx-auto mb-4"
+            />
+
+            <p className="text-gray-700 text-sm mb-5">
+              {message}
+            </p>
+
+            <button
+              onClick={() => setPopup(false)}
+              className="bg-[#014338] text-white px-4 py-2 rounded-lg"
+            >
+              Close
+            </button>
+
+          </div>
+
+        </div>
+
+      )}
 
     </>
   );
