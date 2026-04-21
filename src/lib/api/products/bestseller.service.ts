@@ -15,6 +15,8 @@ export interface BestsellerProduct {
   imageUrl: string
   hoverImageUrl?: string | null
   inStock: boolean
+  category: string;
+  categorySlug: string;
 }
 /**
  * Bestseller API response

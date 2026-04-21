@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { Heart } from 'lucide-react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { BestsellerProduct } from '@/lib/api/home/bestseller/products.service'
+import { BestsellerProduct } from '@/lib/api/products/bestseller.service'
 
 export default function ProductCard({ product }: { product: BestsellerProduct }) {
 
@@ -29,13 +29,13 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
         return
       }
 
-      router.push(`/products/${product.slug}`)
+      router.push(`/collections/${product.categorySlug}/${product.slug}`)
     }
   }
 
   return (
     <Link
-      href={`/products/${product.slug}`}
+      href={`/collections/${product.categorySlug}/${product.slug}`}
       onClick={handleClick}
       className="group block"
     >

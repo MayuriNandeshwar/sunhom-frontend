@@ -33,10 +33,10 @@ export default function ProductGrid({
   };
 
   return (
-    <div className="max-w-7xl mx-auto py-10 px-6">
+    <div className="max-w-7xl mx-auto py-8 px-6">
 
       {/* SORT BAR */}
-      <div className="flex justify-end items-center mb-10 border-b pb-4">
+      <div className="flex justify-end items-center mb-8 border-b pb-4">
         <div className="flex items-center gap-3">
           <span className="text-sm text-gray-600">
             Sort By:
@@ -81,7 +81,7 @@ function LuxuryCard({ product }: { product: PublicProduct }) {
 
   return (
     <Link
-      href={`/products/${product.slug}`}
+      href={`/collections/${product.categorySlug}/${product.slug}`}
       className="group block h-full"
     >
       <div className="flex flex-col h-full">

@@ -1,5 +1,3 @@
-"use client";
-
 import UtilityBar from "@/components/customer/layout/UtilityBar";
 import Navbar from "@/components/customer/layout/Navbar";
 import Footer from "@/components/customer/layout/Footer";
@@ -13,7 +11,11 @@ export default function CustomerLayout({
     <>
       <UtilityBar />
       <Navbar />
-      <main>{children}</main>
+
+      <div>
+        {children}
+      </div>
+
       <Footer />
     </>
   );

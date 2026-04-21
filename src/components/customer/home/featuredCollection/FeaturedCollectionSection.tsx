@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { productService, BestsellerProduct } from '@/lib/api/home/bestseller/products.service';
+import { productService, BestsellerProduct } from '@/lib/api/products/bestseller.service';
 import ProductCard from './ProductCard';
 import Link from 'next/link';
 

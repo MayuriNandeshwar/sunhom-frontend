@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { newArrivalService, NewArrivalProduct } from '@/lib/api/home/newArrival/products.service';
+import { newArrivalService, NewArrivalProduct } from '@/lib/api/products/newArrival.service';
 import ProductCard from './ProductCard';
 
 export default function NewArrivalSection() {

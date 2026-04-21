@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Heart } from 'lucide-react';
 import { useState } from 'react';
-import { NewArrivalProduct } from '@/lib/api/home/newArrival/products.service';
+import { NewArrivalProduct } from '@/lib/api/products/newArrival.service';
 
 export default function ProductCard({ product }: { product: NewArrivalProduct }) {
 
@@ -14,7 +14,7 @@ export default function ProductCard({ product }: { product: NewArrivalProduct })
   const [liked, setLiked] = useState(false);
 
   return (
-    <Link href={`/products/${product.slug}`} className="group block">
+    <Link href={`/collections/${product.categorySlug}/${product.slug}`} className="group block">
       <div className="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-500 flex flex-col h-full">
 
         {/* IMAGE */}

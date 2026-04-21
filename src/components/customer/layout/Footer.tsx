@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { newsletterService } from "@/lib/api/newsletter/newsletter.service";
+import { newsletterService } from "@/lib/api/products/newsletter.service";
 
 import {
   Instagram,
@@ -161,19 +161,20 @@ export default function Footer() {
 
         <div className="max-w-7xl mx-auto px-6">
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 md:gap-x-20">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-y-10 md:gap-x-12">
 
             {/* COLUMN 1 */}
 
             <div>
 
-              <Link href="/" onClick={scrollTop}>
+             <Link href="/" onClick={scrollTop} className="block text-center md:text-left">
                 <Image
                   src="/logo/sunhom.png"
                   alt="SUNHOM"
-                  width={210}
-                  height={80}
+                  width={250}
+                  height={100}
                   priority
+                  className="mx-auto md:mx-0"
                 />
               </Link>
 
