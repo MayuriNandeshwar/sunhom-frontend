@@ -156,7 +156,7 @@ export default function Navbar() {
                 `}
               >
                 {[
-                  { label: "Signature Candles", href: "/collections/candle" },
+                  { label: "Signature Candles", href: "/collections/signature-candle-collection" },
                 ].map(({ label, href }) => (
                   <Link
                     key={label}

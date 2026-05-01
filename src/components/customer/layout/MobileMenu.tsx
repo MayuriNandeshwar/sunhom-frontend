@@ -89,7 +89,7 @@ export default function MobileMenu({
               </Link> */}
 
               <Link
-                href="/collections/candle"
+                href="/collections/signature-candle-collection"
                 onClick={onClose}
                 className="block text-black hover:text-[var(--brand-gold)] transition"
               >

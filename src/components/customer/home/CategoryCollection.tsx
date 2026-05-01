@@ -8,7 +8,7 @@ const categories = [
   {
     title: "Signature Candles",
     image: "/category/candle.png",
-    href: "/collections/candle",
+    href: "/collections/signature-candle-collection",
     comingSoon: false,
   },
   {

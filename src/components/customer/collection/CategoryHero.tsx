@@ -1,15 +1,23 @@
 import Image from "next/image";
 import { CATEGORY_CONFIG } from "@/config/category.config";
 
+const CATEGORY_MAP: Record<string, string> = {
+  candle: "signature-candle-collection",
+  drive: "drive-collection",
+  ritual: "pure-air-rituals",
+};
+
 export default function CategoryHero({ category }: { category: string }) {
-  const config = CATEGORY_CONFIG[category];
+
+  const resolvedCategory = CATEGORY_MAP[category] || category;
+
+  const config = CATEGORY_CONFIG[resolvedCategory];
 
   if (!config) return null;
 
   return (
     <div className="relative h-[450px] md:h-[520px] w-full">
 
-      {/* Background Image */}
       <Image
         src={config.heroImage}
         alt={config.heroTitle}
@@ -18,7 +26,6 @@ export default function CategoryHero({ category }: { category: string }) {
         className="object-cover"
       />
 
-      {/* Overlay */}
       <div className="absolute inset-0 bg-black/40 flex flex-col items-center justify-center text-center px-6">
 
         <h1 className="text-white text-4xl md:text-5xl font-serif tracking-wide mb-4">

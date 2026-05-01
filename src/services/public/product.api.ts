@@ -1,4 +1,4 @@
-import axios from "@/lib/axios";
+import api from "@/lib/axios";
 
 export interface PublicProduct {
   productId: string;
@@ -28,7 +28,7 @@ export async function getProductsByCategory(
     inStock?: boolean;
   }
 ): Promise<PublicProductResponse> {
-  const res = await axios.get("/api/public/products", {
+  const res = await api.get("/api/public/products", {
     params: {
       category,
       ...query,

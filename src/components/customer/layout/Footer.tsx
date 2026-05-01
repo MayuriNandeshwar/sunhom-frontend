@@ -222,7 +222,7 @@ export default function Footer() {
                 <ul className="space-y-2 text-sm">
 
                   <li><Link onClick={scrollTop} href="/" className="text-white/80 hover:text-white">Home</Link></li>
-                  <li><Link href="/collections/candle" className="text-white/80 hover:text-white">Candle</Link></li>
+                  <li><Link href="/collections/signature-candle-collection" className="text-white/80 hover:text-white">Candle</Link></li>
                   <li><Link href="/collections/diffuser" className="text-white/80 hover:text-white">Diffuser</Link></li>
                   <li><Link href="/collections/sachet" className="text-white/80 hover:text-white">Sachet</Link></li>
                   <li><Link href="/about-us" className="text-white/80 hover:text-white">About Us</Link></li>

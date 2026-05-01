@@ -92,7 +92,7 @@ export default function CategoryFAQ({
           {/* Smaller Image */}
           <div className="relative rounded-xl overflow-hidden max-w-md">
             <Image
-              src="/category/candle/mogra.png"
+              src="/category/signature-candle-collection/mogra.png"
               alt="FAQ Candle"
               width={400}
               height={500}
