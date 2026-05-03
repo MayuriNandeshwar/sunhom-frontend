@@ -11,6 +11,7 @@ export interface PublicProduct {
   discountPercentage: number;
   imageUrl: string;
   inStock: boolean;
+  categorySlug: string;
 }
 
 export interface PublicProductResponse {
