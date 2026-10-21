@@ -1,6 +1,6 @@
-import { Product } from "@/types/product";
+import { AdminProductEditDto } from "@/types/adminProduct";
 
-export function ProductSpecs({ product }: { product?: Product }) {
+export function ProductSpecs({ product }: { product?: AdminProductEditDto }) {
   return (
     <details className="border rounded-lg p-4">
       <summary className="font-medium">Product Specification</summary>

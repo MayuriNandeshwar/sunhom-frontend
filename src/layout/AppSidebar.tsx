@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 
-import { useSidebar } from "@/context/SideBarContext";
+import { useSideBar } from "@/context/SidebarContext";
 import SidebarWidget from "./SidebarWidget";
 
 /* ✅ TSX ICONS (converted via SVGR) */
@@ -116,7 +116,7 @@ const othersItems: NavItem[] = [
 /* ---------------------------------- */
 
 const AppSidebar: React.FC = () => {
-  const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
+  const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSideBar();
   const pathname = usePathname();
 
   const [openSubmenu, setOpenSubmenu] = useState<{
@@ -211,9 +211,9 @@ const AppSidebar: React.FC = () => {
 
           {nav.subItems && (
             <div
-              ref={(el) =>
-                (subMenuRefs.current[`${type}-${index}`] = el)
-              }
+              ref={(el) => {
+                subMenuRefs.current[`${type}-${index}`] = el;
+              }}
               style={{
                 height:
                   openSubmenu?.type === type &&

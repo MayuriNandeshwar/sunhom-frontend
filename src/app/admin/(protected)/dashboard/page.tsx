@@ -7,6 +7,7 @@ import {
   fetchRevenueAnalytics,
   fetchOrderStatusDistribution,
 } from "@/lib/api/admin.dashboard";
+import SunhomLoader from "@/components/common/SunhomLoader";
 
 export default function AdminDashboardPage() {
   const [revenueData, setRevenueData] = useState([]);
@@ -33,8 +34,8 @@ export default function AdminDashboardPage() {
 
   if (loading) {
     return (
-      <div className="p-8 text-sm text-gray-500">
-        Loading analytics…
+      <div className="min-h-[50vh] flex items-center justify-center">
+        <SunhomLoader variant="centered" text="Loading analytics…" glow />
       </div>
     );
   }

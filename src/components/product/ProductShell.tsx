@@ -1,4 +1,5 @@
-import { Product } from "@/types/product";
+import type { Dispatch, SetStateAction } from "react";
+import { AdminProductEditDto } from "@/types/adminProduct";
 import { ProductGallery } from "./ProductGallery";
 import { ProductInfo } from "./ProductInfo";
 import { ProductPrice } from "./ProductPrice";
@@ -8,10 +9,10 @@ import { ProductInstructions } from "./ProductInstructions";
 import { ProductAdminControls } from "./ProductAdminControls";
 
 interface Props {
-  mode: "view" | "edit" | "create";
+  mode: "view" | "edit";
   role: "admin" | "customer";
-  product?: Product;
-  setProduct?: any;
+  product?: AdminProductEditDto;
+  setProduct?: Dispatch<SetStateAction<AdminProductEditDto>>;
   onSave?: () => void;
   onPublish?: () => void;
 }

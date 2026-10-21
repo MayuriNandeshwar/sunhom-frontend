@@ -2,16 +2,14 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Heart } from 'lucide-react';
-import { useState } from 'react';
 import { NewArrivalProduct } from '@/lib/api/products/newArrival.service';
+import WishlistButton from '@/components/customer/wishlist/WishlistButton';
+import BuyNowButton from '@/components/customer/buynow/BuyNowButton';
 
 export default function ProductCard({ product }: { product: NewArrivalProduct }) {
 
   const primaryImage = product.imageUrl;
   const hoverImage = product.hoverImageUrl || product.imageUrl;
-
-  const [liked, setLiked] = useState(false);
 
   return (
     <Link href={`/collections/${product.categorySlug}/${product.slug}`} className="group block">
@@ -51,25 +49,26 @@ export default function ProductCard({ product }: { product: NewArrivalProduct })
           )}
 
           {/* Wishlist */}
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              setLiked(prev => !prev);
+          <WishlistButton
+            product={{
+              productId: product.productId,
+              slug: product.slug,
+              categorySlug: product.categorySlug,
+              name: product.productName,
+              imageUrl: product.imageUrl,
+              price: product.price,
+              mrp: product.mrp,
+              shortDescription: product.shortDescription,
+              inStock: product.inStock,
             }}
+            iconClassName="w-6 h-6"
             className="absolute top-5 right-5
                        w-10 h-10 rounded-full
                        bg-white/80 backdrop-blur
                        border border-gray-200
                        flex items-center justify-center
                        hover:scale-105 transition"
-          >
-            <Heart
-              className={liked
-                ? 'fill-[#c2461d] text-[#c2461d]'
-                : 'fill-none text-gray-600'}
-              strokeWidth={1.6}
-            />
-          </button>
+          />
         </div>
 
         {/* CONTENT */}
@@ -96,6 +95,19 @@ export default function ProductCard({ product }: { product: NewArrivalProduct })
               </span>
             )}
           </div>
+
+          <BuyNowButton
+            product={{
+              productId: product.productId,
+              slug: product.slug,
+              categorySlug: product.categorySlug,
+              name: product.productName,
+              imageUrl: product.imageUrl,
+              price: product.price,
+              mrp: product.mrp,
+              inStock: product.inStock,
+            }}
+          />
         </div>
 
       </div>

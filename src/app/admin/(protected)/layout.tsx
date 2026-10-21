@@ -7,6 +7,7 @@ import AdminTopbar from '@/components/admin/AdminTopbar';
 import { fetchAdminMe } from '@/lib/api/admin.auth';
 import { SidebarProvider } from '@/context/SidebarContext';
 import { ThemeProvider } from '@/context/ThemeContext';
+import SunhomLoader from '@/components/common/SunhomLoader';
 
 export default function AdminProtectedLayout({
   children,
@@ -33,9 +34,11 @@ export default function AdminProtectedLayout({
 
   if (loading) {
     return (
-      <div className="h-screen flex items-center justify-center text-sm text-gray-500">
-        Loading Admin Panel…
-      </div>
+      <SunhomLoader
+        variant="fullscreen"
+        text="Accessing Admin Panel…"
+        glow
+      />
     );
   }
 

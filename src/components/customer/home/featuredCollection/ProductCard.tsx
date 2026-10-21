@@ -2,10 +2,11 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import { Heart } from 'lucide-react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { BestsellerProduct } from '@/lib/api/products/bestseller.service'
+import WishlistButton from '@/components/customer/wishlist/WishlistButton'
+import BuyNowButton from '@/components/customer/buynow/BuyNowButton'
 
 export default function ProductCard({ product }: { product: BestsellerProduct }) {
 
@@ -14,7 +15,6 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
   const primaryImage = product.imageUrl
   const hoverImage = product.hoverImageUrl || product.imageUrl
 
-  const [liked, setLiked] = useState(false)
   const [mobilePreview, setMobilePreview] = useState(false)
 
   const handleClick = (e: React.MouseEvent) => {
@@ -97,11 +97,19 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
           )}
 
           {/* Wishlist */}
-          <button
-            onClick={(e) => {
-              e.preventDefault()
-              setLiked(prev => !prev)
+          <WishlistButton
+            product={{
+              productId: product.productId,
+              slug: product.slug,
+              categorySlug: product.categorySlug,
+              name: product.productName,
+              imageUrl: product.imageUrl,
+              price: product.price,
+              mrp: product.mrp,
+              shortDescription: product.shortDescription,
+              inStock: product.inStock,
             }}
+            iconClassName="w-5 h-5"
             className="
               absolute top-5 right-5
               w-10 h-10 rounded-full
@@ -111,17 +119,7 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
               transition-all duration-300
               hover:scale-105
             "
-          >
-            <Heart
-              className={`
-                w-5 h-5 transition-all duration-300
-                ${liked
-                  ? 'fill-[#c2461d] text-[#c2461d]'
-                  : 'fill-none text-gray-600'}
-              `}
-              strokeWidth={1.6}
-            />
-          </button>
+          />
 
         </div>
 
@@ -159,6 +157,19 @@ export default function ProductCard({ product }: { product: BestsellerProduct })
               </span>
             )}
           </div>
+
+          <BuyNowButton
+            product={{
+              productId: product.productId,
+              slug: product.slug,
+              categorySlug: product.categorySlug,
+              name: product.productName,
+              imageUrl: product.imageUrl,
+              price: product.price,
+              mrp: product.mrp,
+              inStock: product.inStock,
+            }}
+          />
 
         </div>
 

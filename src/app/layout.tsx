@@ -3,6 +3,9 @@ import "./globals.css";
 import ClientAnalyticsShell from "@/components/ClientAnalyticsShell";
 import type { Metadata } from "next";
 
+import NavigationLoadingListener from "@/components/common/NavigationLoadingListener";
+import { LoadingProvider } from "@/context/LoadingContext";
+
 export const metadata: Metadata = {
   title: {
     default: "SUNHOM",
@@ -25,7 +28,10 @@ export default function RootLayout({
     <html lang="en">
       <body className="bg-[#F7F5F2]">
         <ClientAnalyticsShell />
-        {children}
+        <LoadingProvider>
+          <NavigationLoadingListener />
+          {children}
+        </LoadingProvider>
       </body>
     </html>
   );

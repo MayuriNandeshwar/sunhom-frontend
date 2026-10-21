@@ -2,7 +2,7 @@
 import { ThemeToggleButton } from "@/components/common/ThemeToggleButton";
 import NotificationDropdown from "@/components/header/NotificationDropdown";
 import UserDropdown from "@/components/header/UserDropdown";
-import { useSidebar } from "@/context/SideBarContext";
+import { useSideBar } from "@/context/SidebarContext";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState ,useEffect,useRef} from "react";
@@ -10,13 +10,13 @@ import React, { useState ,useEffect,useRef} from "react";
 const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
 
-  const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
+  const { isMobileOpen, toggleSideBar, toggleMobileSideBar } = useSideBar();
 
   const handleToggle = () => {
     if (window.innerWidth >= 1024) {
-      toggleSidebar();
+      toggleSideBar();
     } else {
-      toggleMobileSidebar();
+      toggleMobileSideBar();
     }
   };
 

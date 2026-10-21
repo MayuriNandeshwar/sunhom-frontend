@@ -47,16 +47,11 @@ export default function CategorySection() {
         {/* DESKTOP GRID */}
         <div className="hidden md:grid grid-cols-3 gap-10">
           {categories.map((cat, index) => {
-            const Wrapper = cat.comingSoon ? "div" : Link;
+            const wrapperClassName = `relative group ${
+              cat.comingSoon ? "cursor-not-allowed" : ""
+            }`;
 
-            return (
-              <Wrapper
-                key={index}
-                {...(!cat.comingSoon && { href: cat.href })}
-                className={`relative group ${
-                  cat.comingSoon ? "cursor-not-allowed" : ""
-                }`}
-              >
+            const card = (
                 <div className="overflow-hidden rounded-3xl lux-card">
                   <div className="relative h-[450px] w-full overflow-hidden">
 
@@ -107,7 +102,18 @@ export default function CategorySection() {
 
                   </div>
                 </div>
-              </Wrapper>
+            );
+
+            // Coming-soon categories are not clickable, so they get a plain
+            // <div>; active ones link to their collection.
+            return cat.comingSoon ? (
+              <div key={index} className={wrapperClassName}>
+                {card}
+              </div>
+            ) : (
+              <Link key={index} href={cat.href} className={wrapperClassName}>
+                {card}
+              </Link>
             );
           })}
         </div>

@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { newsletterService } from "@/lib/api/products/newsletter.service";
+import SunhomSpinner from "@/components/common/SunhomSpinner";
 
 import {
   Instagram,
@@ -199,9 +200,9 @@ export default function Footer() {
                 <button
                   onClick={handleSubscribe}
                   disabled={loading}
-                  className="bg-white text-[#014338] px-4 py-2 rounded-r font-medium hover:bg-white/90"
+                  className="bg-white text-[#014338] px-4 py-2 rounded-r font-medium hover:bg-white/90 flex items-center justify-center min-w-[90px]"
                 >
-                  {loading ? "..." : "Subscribe"}
+                  {loading ? <SunhomSpinner size="xs" speed="fast" /> : "Subscribe"}
                 </button>
 
               </div>

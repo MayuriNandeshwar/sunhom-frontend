@@ -196,6 +196,51 @@
 .sunhom-track:hover {
   animation-play-state: paused;
 }
+/* ======================================
+   🌞 SUNHOM SYMBOL ROTATION (CLOCKWISE)
+   ====================================== */
+
+@keyframes sunhom-spin-clockwise {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes sunhom-pulse-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(222, 162, 76, 0.45));
+    opacity: 0.92;
+  }
+  50% {
+    filter: drop-shadow(0 0 24px rgba(222, 162, 76, 0.85));
+    opacity: 1;
+  }
+}
+
+.animate-sunhom-spin {
+  animation: sunhom-spin-clockwise 2.2s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.animate-sunhom-spin-fast {
+  animation: sunhom-spin-clockwise 1.2s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.animate-sunhom-spin-slow {
+  animation: sunhom-spin-clockwise 3.6s linear infinite;
+  transform-origin: center center;
+  will-change: transform;
+}
+
+.sunhom-symbol-glow {
+  filter: drop-shadow(0 0 12px rgba(222, 162, 76, 0.75));
+}
 
 /* ======================================
    📄 LEGAL CONTENT — CLEAN READING
@@ -244,7 +289,7 @@
    ====================================== */
 
 @media (prefers-reduced-motion: reduce) {
-  * {
+  *:not(.sunhom-spin-element):not([role="status"] *):not([role="status"]) {
     animation: none !important;
     transition: none !important;
   }

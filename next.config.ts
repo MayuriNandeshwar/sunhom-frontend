@@ -4,11 +4,6 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   reactStrictMode: true,
 
-  // TEMP: remove after stabilizing build
-  typescript: {
-    ignoreBuildErrors: true,
-  },
-
   images: {
     unoptimized: true,
     remotePatterns: [

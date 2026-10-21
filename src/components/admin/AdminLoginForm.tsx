@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { adminLogin } from '@/lib/api/admin.auth';
-import { Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Eye, EyeOff } from 'lucide-react';
+import SunhomSpinner from '@/components/common/SunhomSpinner';
 
 export default function AdminLoginForm() {
   const router = useRouter();
@@ -110,10 +111,10 @@ export default function AdminLoginForm() {
             disabled:cursor-not-allowed disabled:opacity-70"
         >
           {loading ? (
-            <>
-              <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+            <span className="flex items-center justify-center gap-2">
+              <SunhomSpinner size="xs" speed="fast" />
               Signing in...
-            </>
+            </span>
           ) : (
             'Sign In'
           )}

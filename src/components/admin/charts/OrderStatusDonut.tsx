@@ -16,10 +16,12 @@ const COLORS = [
   "#34d399",
 ];
 
-interface StatusData {
+// `type` (not `interface`): recharts' data prop is Record<string, unknown>-like,
+// and only type aliases are implicitly assignable to it.
+type StatusData = {
   status: string;
   count: number;
-}
+};
 
 export default function OrderStatusDonut({
   data,

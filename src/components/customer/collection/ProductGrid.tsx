@@ -7,9 +7,11 @@ import {
 } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
-import { Heart } from "lucide-react";
-import { useState } from "react";
+import type { ReactNode } from "react";
 import { PublicProduct } from "@/services/public/product.api";
+import { useCart } from "@/context/CartContext";
+import WishlistButton from "@/components/customer/wishlist/WishlistButton";
+import BuyNowButton from "@/components/customer/buynow/BuyNowButton";
 
 export default function ProductGrid({
   products,
@@ -76,8 +78,15 @@ export default function ProductGrid({
 }
 
 /* ---------------- LUXURY CARD ---------------- */
-function LuxuryCard({ product }: { product: PublicProduct }) {
-  const [liked, setLiked] = useState(false);
+export function LuxuryCard({
+  product,
+  footer,
+}: {
+  product: PublicProduct;
+  /** Replaces the default "Add to Cart" button (used by the wishlist page). */
+  footer?: ReactNode;
+}) {
+  const { addItem } = useCart();
 
   return (
     <Link
@@ -104,22 +113,20 @@ function LuxuryCard({ product }: { product: PublicProduct }) {
             )}
 
             {/* WISHLIST */}
-            <button
-              onClick={(e) => {
-                e.preventDefault();
-                setLiked(prev => !prev);
+            <WishlistButton
+              product={{
+                productId: product.productId,
+                slug: product.slug,
+                categorySlug: product.categorySlug,
+                name: product.productName,
+                imageUrl: product.imageUrl,
+                price: product.price,
+                mrp: product.mrp,
+                shortDescription: product.shortDescription,
+                inStock: product.inStock,
               }}
               className="absolute top-3 right-3 w-9 h-9 rounded-full bg-white/90 flex items-center justify-center shadow"
-            >
-              <Heart
-                className={`w-4 h-4 ${
-                  liked
-                    ? "fill-red-500 text-red-500"
-                    : "text-gray-600"
-                }`}
-                strokeWidth={1.8}
-              />
-            </button>
+            />
           </div>
         </div>
 
@@ -153,10 +160,19 @@ function LuxuryCard({ product }: { product: PublicProduct }) {
                 </div>
 
                 {/* BUTTON */}
+                {footer ?? (
                 <button
                 onClick={(e) => {
                     e.preventDefault();
-                    console.log("Add to cart", product.productId);
+                    addItem({
+                      productId: product.productId,
+                      slug: product.slug,
+                      categorySlug: product.categorySlug,
+                      name: product.productName,
+                      imageUrl: product.imageUrl,
+                      price: product.price,
+                      mrp: product.mrp,
+                    });
                 }}
                 disabled={!product.inStock}
                 className={`
@@ -170,6 +186,23 @@ function LuxuryCard({ product }: { product: PublicProduct }) {
                 >
                 {product.inStock ? "Add to Cart" : "Out of Stock"}
                 </button>
+                )}
+
+                {/* BUY NOW (hidden when a custom footer replaces the actions) */}
+                {!footer && product.inStock && (
+                  <BuyNowButton
+                    product={{
+                      productId: product.productId,
+                      slug: product.slug,
+                      categorySlug: product.categorySlug,
+                      name: product.productName,
+                      imageUrl: product.imageUrl,
+                      price: product.price,
+                      mrp: product.mrp,
+                      inStock: product.inStock,
+                    }}
+                  />
+                )}
 
             </div>
             </div>
